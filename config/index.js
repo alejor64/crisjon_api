@@ -7,6 +7,7 @@ const config = {
   mongo_password: process.env.MONGO_PASSWORD,
   mongo_keyword: process.env.MONGO_KEYWORD,
   mongo_db: process.env.MONGO_DB,
+  token_key: process.env.TOKEN_KEY
 };
 
 module.exports = config;
