@@ -35,18 +35,10 @@ const token_exits = async (token = '') => {
   };
 };
 
-const token_can_delete = async(token = '') => {
-  const user = await UserSchema.findOne({token});
-  if(user?.role !== 'Admin'){
-    throw new Error('You do not have permission to edit.');
-  };
-};
-
 module.exports = {
   email_exits,
   email_not_exits,
   user_by_id,
   is_user_deleted,
   token_exits,
-  token_can_delete
 }
