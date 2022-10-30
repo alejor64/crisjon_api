@@ -6,10 +6,6 @@ const orderSchema = new Schema({
     unique: true,
     required: true,
   },
-  created_date: {
-    type: String,
-    default: new Date(),
-  },
   service: {
     type: String,
     required: true,
@@ -49,7 +45,15 @@ const orderSchema = new Schema({
   returned: {
     type: Boolean,
     default: false,
-  }
+  },
+  created_at: {
+    type: String,
+    default: new Date(),
+  },
+  last_modificated_at: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 module.exports = model('orders', orderSchema);

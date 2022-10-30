@@ -9,7 +9,11 @@ const priceSchema = new Schema({
     type: String,
     required: true,
   },
-  created_date: {
+  created_at: {
+    type: Date,
+    default: new Date(),
+  },
+  last_modificated_at: {
     type: Date,
     default: new Date(),
   },

@@ -20,14 +20,18 @@ const clientSchema = new Schema({
     type: String,
     required: true,
   },
-  created_date: {
-    type: Date,
-    default: new Date(),
-  },
   email: {
     type: String,
     unique: true,
   },
+  created_at: {
+    type: Date,
+    default: new Date(),
+  },
+  last_modificated_at:{
+    type: Date,
+    default: new Date(),
+  }
 });
 
 module.exports = model('clients', clientSchema);
