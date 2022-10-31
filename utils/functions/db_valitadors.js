@@ -1,4 +1,5 @@
 const UserSchema = require('../../model/user');
+const ClientSchema = require('../../model/client');
 
 const email_exits = async (email = '') => {
   const exits_email = await UserSchema.findOne({email});
@@ -28,10 +29,10 @@ const is_user_deleted = async (id = '') => {
   };
 };
 
-const token_exits = async (token = '') => {
-  const user = await UserSchema.findOne({token});
-  if(!user || !user?.active){
-    throw new Error(`Invalid token`);
+const client_by_id = async (id = '') => {
+  const client = await ClientSchema.findById(id);
+  if(!client){
+    throw new Error(`The client ${id} does not exist`);
   };
 };
 
@@ -40,5 +41,5 @@ module.exports = {
   email_not_exits,
   user_by_id,
   is_user_deleted,
-  token_exits,
+  client_by_id,
 }
