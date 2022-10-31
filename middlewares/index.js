@@ -1,7 +1,6 @@
 const {validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
 const {token_key} = require('../config/index');
-const {http_response} = require('../config/http_responses/index');
 
 const validate_fields = (req, res, next) => {
   const errors = validationResult(req);
@@ -25,19 +24,20 @@ const validate_token = (req, res, next) => {
   }
 };
 
-const admin_role = (req, res, next) => {
-  const {user} = req;
-  if(!user){
-    return res.status(500).json({msn: 'Internal server error', error: true})
+const has_role = (...roles) => {
+  return (req, res, next) => {
+    const {role: user_role} = req.user;
+    if(!user_role){
+      return res.status(500).json({msn: 'Internal Server Error', error: true});
+    }else if(!roles.includes(user_role)){
+      return res.status(401).json({msn: 'Unauthorized', error: true})
+    };
+    next();
   };
-  if(user.role !== 'Admin'){
-    return res.status(401).json({msn: `${user.email} does not have permission`, error: true});
-  };
-  next();
 };
 
 module.exports = {
   validate_fields,
   validate_token,
-  admin_role
+  has_role
 }
