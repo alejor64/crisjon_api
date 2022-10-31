@@ -16,6 +16,10 @@ const clientSchema = new Schema({
   zip_code: {
     type: String,
   },
+  favorite: {
+    type: Boolean,
+    default: false,
+  },
   phone: {
     type: String,
     required: true,

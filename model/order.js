@@ -12,7 +12,7 @@ const orderSchema = new Schema({
   },
   description: {
     type: String,
-    default: '',
+    required: true,
   },
   item: {
     type: String,
@@ -22,7 +22,7 @@ const orderSchema = new Schema({
   },
   cad_number: {
     type: String,
-    unique: True,
+    unique: true,
   },
   rush: {
     type: Boolean,
