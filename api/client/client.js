@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {check} = require('express-validator');
 const {validate_fields, validate_token, has_role} = require('../../middlewares/index');
-const {
-  client_by_id,
-} = require('../../utils/functions/db_valitadors');
+const {client_by_id, client_by_name} = require('../../utils/functions/db_validations/client');
 const {ADMIN_ROLE} = require('../../utils/constants/index');
 const Client = require('../../lib/client/client');
 const client = new Client();
@@ -28,10 +26,11 @@ router.get('/:client_id', [
 router.post('/create', [
   validate_token,
   check('name').not().isEmpty(),
+  check('name').custom(client_by_name),
   check('address').not().isEmpty(),
   check('phone').not().isEmpty(),
   validate_fields,
-], async (res, res) => {
+], async (req, res) => {
   const {body} = req;
   const {status,...rest} = await client.create(body);
   return res.status(status).json(rest);
@@ -44,7 +43,7 @@ router.put('/edit/:client_id', [
   check('client_id').custom(client_by_id),
   validate_fields,
 ], async (req, res) => {
-  const {client_id} = req.param;
+  const {client_id} = req.params;
   const {body} = req;
   const {status, ...rest} = await client.edit(body, client_id);
   return res.status(status).json(rest);

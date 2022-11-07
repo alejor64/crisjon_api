@@ -1,5 +1,4 @@
-const UserSchema = require('../../model/user');
-const OrderSchema = require('../../model/order');
+const UserSchema = require('../../../model/user');
 
 const email_exits = async (email = '') => {
   const exits_email = await UserSchema.findOne({email});
@@ -29,17 +28,9 @@ const is_user_deleted = async (id = '') => {
   };
 };
 
-const cad_number_exits = async(cad_number) => {
-  const order_with_cad_number = await OrderSchema.findOne({cad_number});
-  if(order_with_cad_number){
-    throw new Error(`The cad number ${cad_number} already exists`);
-  };
-};
-
 module.exports = {
   email_exits,
   email_not_exits,
   user_by_id,
   is_user_deleted,
-  cad_number_exits,
 }

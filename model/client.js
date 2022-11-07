@@ -8,13 +8,17 @@ const clientSchema = new Schema({
   address: {
     type: String,
     required: true,
-    unique: true,
   },
   city: {
     type: String
   },
-  zip_code: {
+  fein: {
     type: String,
+    required: true,
+    unique: true,
+  },
+  zip_code: {
+    type: Number,
   },
   favorite: {
     type: Boolean,
@@ -26,7 +30,6 @@ const clientSchema = new Schema({
   },
   email: {
     type: String,
-    unique: true,
   },
   created_at: {
     type: Date,

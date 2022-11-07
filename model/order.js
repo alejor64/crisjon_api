@@ -1,10 +1,17 @@
 const {Schema, model} = require('mongoose');
 
 const orderSchema = new Schema({
-  customer_id: {
+  client_id: {
     type: String,
-    unique: true,
     required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  client_job_name: {
+    type: String
   },
   service: {
     type: String,
@@ -24,7 +31,7 @@ const orderSchema = new Schema({
     type: String,
     unique: true,
   },
-  rush: {
+  rush: { //URGENTE
     type: Boolean,
     default: false,
   },
@@ -34,6 +41,7 @@ const orderSchema = new Schema({
   },
   payed: {
     type: Boolean,
+    default: false,
   },
   paymente_date: {
     type: Date
@@ -43,6 +51,14 @@ const orderSchema = new Schema({
     required: true,
   },
   returned: {
+    type: Boolean,
+    default: false,
+  },
+  final_price: {
+    type: Number,
+    default: 0
+  },
+  deleted: {
     type: Boolean,
     default: false,
   },

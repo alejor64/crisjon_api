@@ -7,7 +7,7 @@ const {
   email_not_exits,
   user_by_id,
   is_user_deleted,
-} = require('../../utils/functions/db_valitadors');
+} = require('../../utils/functions/db_validations/user');
 const {ADMIN_ROLE} = require('../../utils/constants/index');
 const User = require('../../lib/user/user');
 const user = new User();
