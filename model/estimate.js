@@ -1,13 +1,17 @@
 const {Schema, model} = require('mongoose');
 
-const priceSchema = new Schema({
+const EstimateSchema = new Schema({
   order_id: {
     type: String,
     required: true,
   },
-  customer_id: {
+  client_id: {
     type: String,
     required: true,
+  },
+  deleted: {
+    type: Boolean,
+    default: false,
   },
   created_at: {
     type: Date,
@@ -19,4 +23,4 @@ const priceSchema = new Schema({
   },
 });
 
-module.exports = model('prices', priceSchema);
+module.exports = model('estimated_prices', EstimateSchema);

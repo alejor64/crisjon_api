@@ -61,8 +61,7 @@ router.put('/edit/:user_id', [
   check('user_id').custom(user_by_id),
   validate_fields
 ], async (req, res) => {
-  const {user_id} = req.params;
-  const {body} = req;
+  const {body, params: {user_id}} = req;
   const {status, ...rest} = await user.edit(body, user_id);
   return res.status(status).json(rest);
 });
