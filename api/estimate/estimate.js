@@ -28,6 +28,7 @@ router.get('/:estimate_id', [
 
 router.post('/create/client/:client_id/order/:order_id', [
   validate_token,
+  check('metal_type', 'Metal type is required').not().isEmpty(),
   check('client_id', 'The client id is required').not().isEmpty(),
   check('client_id', 'Invalid client id').isMongoId(),
   check('client_id').custom(client_by_id),
