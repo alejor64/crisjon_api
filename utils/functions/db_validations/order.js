@@ -6,7 +6,7 @@ const order_by_id = async(id = '') => {
 };
 
 const order_by_name = async (name = '') => {
-  const order = await OrderSchema.findOne(name);
+  const order = await OrderSchema.findOne({name});
   if(order) throw new Error(`The order ${name} already exist`);
 }
 

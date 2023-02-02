@@ -29,6 +29,7 @@ router.post('/create', [
   check('name').custom(client_by_name),
   check('address').not().isEmpty(),
   check('phone').not().isEmpty(),
+  check('fein').not().isEmpty(),
   validate_fields,
 ], async (req, res) => {
   const {body} = req;

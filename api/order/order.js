@@ -3,7 +3,7 @@ const router = express.Router();
 const {check} = require('express-validator');
 const {validate_fields, validate_token, has_role} = require('../../middlewares/index');
 const {order_by_id, order_by_name} = require('../../utils/functions/db_validations/order');
-const {client_by_id} = require('../../utils/functions/db_validations/client');
+const {client_by_id, client_by_name_exits} = require('../../utils/functions/db_validations/client');
 const {ADMIN_ROLE} = require('../../utils/constants/index');
 const Order = require('../../lib/order/order');
 const order = new Order();
@@ -34,36 +34,34 @@ router.get('/:order_id', [
   return res.status(status).json(rest);
 });
 
-router.get('/client/:client_id', [
+router.get('/client/:client_name', [
   validate_token,
-  check('client_id', 'Invalid Id').isMongoId(),
-  check('client_id').custom(client_by_id),
+  check('client_name').custom(client_by_name_exits),
   validate_fields
 ], async(req, res) => {
-  const {client_id} = req.params;
-  const {status, ...rest} = await order.get_orders_by_client_id(client_id);
+  const {client_name} = req.params;
+  const {status, ...rest} = await order.get_orders_by_client_name(client_name);
   return res.status(status).json(rest);
 });
 
-router.get('/client/:client_id/active', [
+router.get('/client/:client_name/active', [
   validate_token,
-  has_role(ADMIN_ROLE),
-  check('client_id', 'Invalid Id').isMongoId(),
-  check('client_id').custom(client_by_id),
+  check('client_name').custom(client_by_name_exits),
   validate_fields,
 ], async(req, res) => {
-  const {client_id} = req.params;
-  const {status, ...rest} = await order.get_all_active_orders_by_client(client_id);
+  const {client_name} = req.params;
+  const {status, ...rest} = await order.get_all_active_orders_by_client(client_name);
   return res.status(status).json(rest);
 });
 
-router.post('/create/:client_id', [
+router.post('/create', [
   validate_token,
-  check('client_id', 'client_id is required').not().isEmpty(),
-  check('client_id').custom(client_by_id),
+  check('client_name', 'client_name is required').not().isEmpty(),
+  check('client_name').custom(client_by_name_exits),
   check('description', 'description is required').not().isEmpty(),
   check('service', 'service is required').not().isEmpty(),
   check('status', 'status is required').not().isEmpty(),
+  check('item', 'item is required').not().isEmpty(),
   check('name', 'order name is required').not().isEmpty(),
   check('name').custom(order_by_name),
   validate_fields,

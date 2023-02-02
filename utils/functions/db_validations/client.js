@@ -12,7 +12,13 @@ const client_by_id = async (id = '') => {
   };
 };
 
+const client_by_name_exits = async (name = '') => {
+  const client = await ClientSchema.findOne({name});
+  if(!client) throw new Error(`The client ${name} does not exists`);
+}
+
 module.exports = {
   client_by_name,
-  client_by_id
+  client_by_id,
+  client_by_name_exits,
 };

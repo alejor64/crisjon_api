@@ -29,10 +29,11 @@ app.get('/', (req, res) => {
   });
 });
 
-mongoose.connect(mongo_uri, options, () => {
+mongoose.connect(mongo_uri, options, (error) => {
+  if(error) console.log(error);
   console.log('[DB] Conection Successful');
 });
 
 app.listen(config.port, () => {
-  console.log(`Listening on port ${config.port}`);
+  console.log(`Server is listening on port ${config.port}`);
 })

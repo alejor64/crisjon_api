@@ -31,6 +31,12 @@ const clientSchema = new Schema({
   email: {
     type: String,
   },
+  sst: {
+    type: Number,
+  },
+  tax_id_number: {
+    type: Number,
+  },
   created_at: {
     type: Date,
     default: new Date(),
