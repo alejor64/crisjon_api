@@ -8,6 +8,7 @@ const user_api = require('./api/user/user');
 const client_api = require('./api/client/client');
 const order_api = require('./api/order/order');
 const estimate_api = require('./api/estimate/estimate');
+const token_api = require('./api/token/token');
 let mongo_uri = `mongodb+srv://${config.mongo_user}:${config.mongo_password}@cluster0.${config.mongo_keyword}.mongodb.net/${config.mongo_db}`;
 let options = {
   useNewUrlParser: true,
@@ -21,6 +22,7 @@ app.use('/user', user_api);
 app.use('/client', client_api);
 app.use('/order', order_api);
 app.use('/estimate', estimate_api);
+app.use('/token', token_api);
 
 app.get('/', (req, res) => {
   return res.status(200).json({
