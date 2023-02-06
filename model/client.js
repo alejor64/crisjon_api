@@ -12,12 +12,13 @@ const clientSchema = new Schema({
   city: {
     type: String
   },
+  state: {
+    type: String,
+  },
   fein: {
     type: String,
-    required: true,
-    unique: true,
   },
-  zip_code: {
+  zipCode: {
     type: Number,
   },
   favorite: {
@@ -34,14 +35,14 @@ const clientSchema = new Schema({
   sst: {
     type: Number,
   },
-  tax_id_number: {
+  taxIdNumber: {
     type: Number,
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date(),
   },
-  last_modificated_at:{
+  lastModificatedAt:{
     type: Date,
     default: new Date(),
   }

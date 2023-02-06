@@ -9,6 +9,8 @@ const client_api = require('./api/client/client');
 const order_api = require('./api/order/order');
 const estimate_api = require('./api/estimate/estimate');
 const token_api = require('./api/token/token');
+const serviceApi = require('./api/order/services/services')
+const itemApi = require('./api/order/items/items')
 let mongo_uri = `mongodb+srv://${config.mongo_user}:${config.mongo_password}@cluster0.${config.mongo_keyword}.mongodb.net/${config.mongo_db}`;
 let options = {
   useNewUrlParser: true,
@@ -21,6 +23,8 @@ app.use(body_parser.json());
 app.use('/user', user_api);
 app.use('/client', client_api);
 app.use('/order', order_api);
+app.use('/order-services', serviceApi);
+app.use('/order-items', itemApi);
 app.use('/estimate', estimate_api);
 app.use('/token', token_api);
 

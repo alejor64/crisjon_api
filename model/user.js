@@ -28,11 +28,11 @@ const userSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date(),
   },
-  last_modificated_at: {
+  lastModificatedAt: {
     type: Date,
     default: new Date(),
   },

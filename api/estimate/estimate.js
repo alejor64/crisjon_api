@@ -26,19 +26,19 @@ router.get('/:estimate_id', [
   return res.status(status).json(rest);
 });
 
-router.post('/create/client/:client_id/order/:order_id', [
+router.post('/create/client/:clientId/order/:orderId', [
   validate_token,
-  check('metal_type', 'Metal type is required').not().isEmpty(),
-  check('client_id', 'The client id is required').not().isEmpty(),
-  check('client_id', 'Invalid client id').isMongoId(),
-  check('client_id').custom(client_by_id),
-  check('order_id', 'The order id is required').not().isEmpty(),
-  check('order_id', 'Invalid order id').isMongoId(),
-  check('order_id').custom(order_by_id),
+  check('metalType', 'Metal type is required').not().isEmpty(),
+  check('clientId', 'The client id is required').not().isEmpty(),
+  check('clientId', 'Invalid client id').isMongoId(),
+  check('clientId').custom(client_by_id),
+  check('orderId', 'The order id is required').not().isEmpty(),
+  check('orderId', 'Invalid order id').isMongoId(),
+  check('orderId').custom(order_by_id),
   validate_fields
 ], async(req, res) => {
-  const {body, params: {client_id, order_id}} = req;
-  const {status, ...rest} = await estimate.create(body, client_id, order_id);
+  const {body, params: {clientId, orderId}} = req;
+  const {status, ...rest} = await estimate.create(body, clientId, orderId);
   return res.status(status).json(rest);
 });
 

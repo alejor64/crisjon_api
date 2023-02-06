@@ -41,7 +41,7 @@ router.post('/login', [
 
 router.post('/singup', [
   check('email', 'Invalid email').isEmail(),
-  check('password', 'The password must be at least 6 characters').isLength({min: 9}),
+  check('password', 'The password must be at least 6 characters').isLength({min: 6}),
   check('role', 'The role is required').not().isEmpty(),
   check('name', 'The name is required').not().isEmpty(),
   check('email').custom(email_exits),
@@ -54,7 +54,6 @@ router.post('/singup', [
 
 router.put('/edit/:user_id', [
   validate_token,
-  check('email', 'The email can not be updated').isEmpty(),
   check('id', 'The id can not be updated').isEmpty(),
   check('_id', 'The id can not be updated').isEmpty(),
   check('user_id', 'Invalid Id').isMongoId(),

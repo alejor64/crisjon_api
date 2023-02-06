@@ -1,131 +1,131 @@
 const {Schema, model} = require('mongoose');
 
 const EstimateSchema = new Schema({
-  order_id: {
+  orderId: {
     type: String,
     required: true,
   },
-  client_id: {
+  clientId: {
     type: String,
     required: true,
   },
-  golden_price: {
+  goldenPrice: {
     type: Number,
     default: 0,
   },
-  silver_price: {
+  silverPrice: {
     type: Number,
     default: 0,
   },
-  platinum_price: {
+  platinumPrice: {
     type: Number,
     default: 0,
   },
-  cad_price: {
+  cadPrice: {
     type: Number,
     default: 0,
   },
-  wax_price: {
+  waxPrice: {
     type: Number,
     default: 0,
   },
-  wax_quantity: {
+  waxQuantity: {
     type: Number,
     default: 1,
   },
-  casting_price: {
+  castingPrice: {
     type: Number,
     default: 0,
   },
-  casting_quantity: {
+  castingQuantity: {
     type: Number,
     default: 1,
   },
-  metal_type: {
+  metalType: {
     type: String,
     required: true,
   },
-  metal_quantity: {
+  metalQuantity: {
     type: Number,
     default: 0,
   },
-  stone_quantity: {
+  stoneQuantity: {
     type: Number,
     default: 0,
   },
-  stone_price: {
+  stonePrice: {
     type: Number,
     default: 0,
   },
-  center_stone_price: {
+  centerStonePrice: {
     type: Number,
     default: 0,
   },
-  diamond_weight: {
+  diamondWeight: {
     type: Number,
     default: 0,
   },
-  diamond_price: {
+  diamondPrice: {
     type: Number,
     default: 0,
   },
-  color_stone: {
+  colorStone: {
     type: Number,
     default: 0,
   },
-  cleaning_price: {
+  cleaningPrice: {
     type: Number,
     default: 0,
   },
-  cleaning_quantity: {
+  cleaningQuantity: {
     type: Number,
     default: 1,
   },
-  polishing_price: {
+  polishingPrice: {
     type: Number,
     default: 0,
   },
-  polishing_quantity: {
+  polishingQuantity: {
     type: Number,
     default: 1,
   },
-  assembling_price: {
+  assemblingPrice: {
     type: Number,
     default: 0,
   },
-  assembling_quantity: {
+  assemblingQuantity: {
     type: Number,
     default: 1,
   },
-  findings_price: {
+  findingsPrice: {
     type: Number,
     default: 0,
   },
-  findings_quantity: {
+  findingsQuantity: {
     type: Number,
     default: 1,
   },
-  rhodioum_price: {
+  rhodioumPrice: {
     type: Number,
     default: 0,
   },
-  rhodioum_quantity:{
+  rhodioumQuantity:{
     type: Number,
     default: 1,
   },
-  engraving_price: {
+  engravingPrice: {
     type: Number,
     default: 0,
   },
-  engraving_quantity: {
+  engravingQuantity: {
     type: Number,
     default: 1,
   },
-  picture_price: {
+  picturePrice: {
     type: Number,
     default: 1,
   },
-  total_price: {
+  totalPrice: {
     type: Number,
     default: 0,
   },
@@ -133,11 +133,11 @@ const EstimateSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: new Date(),
   },
-  last_modificated_at: {
+  lastModificatedAt: {
     type: Date,
     default: new Date(),
   },
