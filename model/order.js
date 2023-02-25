@@ -13,7 +13,6 @@ const orderSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   clientJobName: {
     type: String
