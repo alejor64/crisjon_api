@@ -4,7 +4,8 @@
   "description": "CrisJson Api",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon index"
+    "dev": "NODE_ENV=development nodemon index",
+    "start": "node index"
   },
   "author": "",
   "license": "ISC",
