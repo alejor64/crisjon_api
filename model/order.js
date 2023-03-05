@@ -43,6 +43,9 @@ const orderSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  note: {
+    type: String,
+  },
   payed: {
     type: Boolean,
     default: false,

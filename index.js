@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 });
 
 mongoose.connect(mongo_uri, options, (error) => {
-  if(error) console.log(error);
+  if(error) console.log('Error connecting to MongoDB', error);
   console.log('[DB] Conection Successful');
 });
 
