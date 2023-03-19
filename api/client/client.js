@@ -13,7 +13,7 @@ router.get('/', [validate_token], async (req, res) => {
 
 router.get('/:clientId', [
   validate_token,
-  check('clientId', 'Client id is requires').not().isEmpty(),
+  check('clientId', 'Client id is required').not().isEmpty(),
   check('clientId').custom(client_by_id),
   validate_fields,
 ], async (req, res) => {
@@ -38,7 +38,7 @@ router.post('/create', [
 
 router.put('/edit/:clientId', [
   validate_token,
-  check('clientId', 'Client id is requires').not().isEmpty(),
+  check('clientId', 'Client id is required').not().isEmpty(),
   check('clientId').custom(client_by_id),
   validate_fields,
 ], async (req, res) => {
