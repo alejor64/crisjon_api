@@ -6,7 +6,7 @@ const invoiceSchema = new Schema({
     required: true,
     unique: true,
   },
-  intialDate: {
+  startDate: {
     type: String,
     required: true,
   },

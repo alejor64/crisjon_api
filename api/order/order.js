@@ -4,7 +4,7 @@ const {check} = require('express-validator');
 const {validate_fields, validate_token, has_role} = require('../../middlewares/index');
 const {order_by_id, order_by_name} = require('../../utils/functions/db_validations/order');
 const {client_by_name_exits} = require('../../utils/functions/db_validations/client');
-const {ADMIN_ROLE} = require('../../utils/constants/index');
+const {ADMIN_ROLE, REGEX_DATE_BEGINING_YEAR} = require('../../utils/constants/index');
 const Order = require('../../lib/order/order');
 const order = new Order();
 
@@ -51,6 +51,21 @@ router.get('/client/:clientName/active', [
 ], async(req, res) => {
   const {clientName} = req.params;
   const {status, ...rest} = await order.get_all_active_orders_by_client(clientName);
+  return res.status(status).json(rest);
+});
+
+router.get('/client-name/:clientName', [
+  validate_token,
+  check('clientName', 'Client name is required').not().isEmpty(),
+  check('clientName').custom(client_by_name_exits),
+  check('startDate', 'Start date is required').not().isEmpty(),
+  check('startDate', 'Invalid date').matches(REGEX_DATE_BEGINING_YEAR),
+  check('endDate', 'End date is required').not().isEmpty(),
+  check('endDate', 'Invalid date').matches(REGEX_DATE_BEGINING_YEAR),
+  validate_fields,
+], async(req, res) => {
+  const {params: {clientName}, query: {startDate, endDate}} = req
+  const {status, ...rest} = await order.get_orders_by_client_and_date(clientName, startDate, endDate);
   return res.status(status).json(rest);
 });
 
