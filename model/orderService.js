@@ -9,14 +9,12 @@ const orderServiceSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  createdAt: {
-    type: Date,
-    default: new Date(),
-  },
   lastModificatedAt: {
     type: Date,
     default: new Date(),
   },
+}, {
+  timestamps: true
 });
 
 module.exports = model('orderServices', orderServiceSchema)

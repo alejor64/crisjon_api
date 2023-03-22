@@ -133,14 +133,8 @@ const EstimateSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  createdAt: {
-    type: Date,
-    default: new Date(),
-  },
-  lastModificatedAt: {
-    type: Date,
-    default: new Date(),
-  },
+}, {
+  timestamps: true
 });
 
 module.exports = model('estimated_prices', EstimateSchema);

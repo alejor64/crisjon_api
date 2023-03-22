@@ -76,14 +76,12 @@ const orderSchema = new Schema({
   deliveredDate: {
     type: Date,
   },
-  createdAt: {
-    type: Date,
-    default: new Date(),
-  },
   lastModificatedAt: {
     type: Date,
     default: new Date(),
   },
+}, {
+  timestamps: true
 });
 
 module.exports = model('orders', orderSchema);

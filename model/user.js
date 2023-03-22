@@ -28,14 +28,12 @@ const userSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  createdAt: {
-    type: Date,
-    default: new Date(),
-  },
   lastModificatedAt: {
     type: Date,
     default: new Date(),
   },
+}, {
+  timestamps: true
 });
 
 userSchema.methods.toJSON = function(){

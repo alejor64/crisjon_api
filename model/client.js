@@ -38,14 +38,12 @@ const clientSchema = new Schema({
   taxIdNumber: {
     type: Number,
   },
-  createdAt: {
-    type: Date,
-    default: new Date(),
-  },
   lastModificatedAt:{
     type: Date,
     default: new Date(),
   }
+}, {
+  timestamps: true
 });
 
 module.exports = model('clients', clientSchema);
