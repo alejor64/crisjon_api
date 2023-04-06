@@ -38,6 +38,10 @@ const clientSchema = new Schema({
   taxIdNumber: {
     type: Number,
   },
+  outstandingBalance: {
+    type: Number,
+    default: 0,
+  },
   lastModificatedAt:{
     type: Date,
     default: new Date(),

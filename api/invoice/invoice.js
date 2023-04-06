@@ -41,6 +41,17 @@ router.get('/number/:invoiceNumber', [
   return res.status(status).json(rest);
 });
 
+router.get('/client/:clientName', [
+  validate_token,
+  check('clientName', 'Client name is required').not().isEmpty(),
+  check('clientName').custom(client_by_name_exits),
+  validate_fields
+], async(req, res) => {
+  const {clientName} =req.params;
+  const {status, ...rest} = await invoice.get_invoice_by_client_name(clientName);
+  return res.status(status).json(rest);
+})
+
 router.post('/create', [
   validate_token,
   check('number', 'Number is required').not().isEmpty(),
@@ -66,12 +77,24 @@ router.put('/edit/:invoiceId', [
   check('invoiceId', 'invoice id is required').not().isEmpty(),
   check('invoiceId').isMongoId(),
   check('invoiceId').custom(invoice_id),
-  check('number').custom(invoice_new_number),
+  check('number').custom(invoice_number),
   validate_fields,
 ], async (req, res) => {
   const {invoiceId} = req.params;
   const {body} = req;
   const {status, ...rest} = await invoice.edit(invoiceId, body)
+  return res.status(status).json(rest);
+});
+
+router.delete('/delete/:invoiceId', [
+  validate_token,
+  check('invoiceId', 'invoice id is required').not().isEmpty(),
+  check('invoiceId').isMongoId(),
+  check('invoiceId').custom(invoice_id),
+  validate_fields,
+], async (req, res) => {
+  const {invoiceId} = req.params;
+  const {status, ...rest} = await invoice.deleteById(invoiceId)
   return res.status(status).json(rest);
 });
 

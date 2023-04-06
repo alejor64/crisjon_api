@@ -48,4 +48,16 @@ router.put('/edit/:clientId', [
   return res.status(status).json(rest);
 });
 
+router.delete('/delete/:clientId', [
+  validate_token,
+  check('clientId', 'Client id is required').not().isEmpty(),
+  check('clientId').isMongoId(),
+  check('clientId').custom(client_by_id),
+  validate_fields,
+], async (req, res) => {
+  const {clientId} = req.params;
+  const {status, ...rest} = await client.deleteById(clientId);
+  return res.status(status).json(rest);
+})
+
 module.exports = router;

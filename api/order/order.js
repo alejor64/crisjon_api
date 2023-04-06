@@ -10,7 +10,7 @@ const order = new Order();
 
 router.get('/', [
   validate_token,
-], async(req, res) => {
+], async(_req, res) => {
   const {status, ...rest} = await order.get_all_orders();
   return res.status(status).json(rest);
 });
