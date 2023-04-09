@@ -47,8 +47,8 @@ router.get('/client/:clientName', [
   check('clientName').custom(client_by_name_exits),
   validate_fields
 ], async(req, res) => {
-  const {clientName} =req.params;
-  const {status, ...rest} = await invoice.get_invoice_by_client_name(clientName);
+  const {params: {clientName}, query: {startDate, endDate}} = req
+  const {status, ...rest} = await invoice.get_invoice_by_client_name(clientName, startDate, endDate);
   return res.status(status).json(rest);
 })
 
