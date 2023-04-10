@@ -38,8 +38,11 @@ app.get('/', (req, res) => {
 });
 
 mongoose.connect(mongo_uri, options, (error) => {
-  if(error) console.log('Error connecting to MongoDB', error);
-  console.log('[DB] Conection Successful now');
+  if(error) {
+    console.log('Error connecting to MongoDB', error)
+  }else {
+    console.log('[DB] Conection Successful now');
+  };
 });
 
 app.listen(config.port, () => {

@@ -77,8 +77,6 @@ router.post('/create', [
   check('service', 'service is required').not().isEmpty(),
   check('status', 'status is required').not().isEmpty(),
   check('item', 'item is required').not().isEmpty(),
-  check('name', 'order name is required').not().isEmpty(),
-  check('name').custom(order_by_name),
   validate_fields,
 ], async(req, res) => {
   const {body} = req;
