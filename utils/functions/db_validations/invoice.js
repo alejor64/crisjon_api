@@ -11,10 +11,10 @@ const invoice_number = async (invoiceNumber = 0) => {
   if(!invoice) throw new Error(`The invoice number ${number} does not exist`);
 };
 
-const invoice_new_number = async (invoiceNumber = 0) => {
+const invoice_new_number = async (invoiceNumber = 0, { clientName }) => {
   const number = parseInt(invoiceNumber)
-  const invoice = await invoiceSchema.findOne({number});
-  if(invoice) throw new Error(`The invoice number ${number} already exist`);
+  const invoice = await invoiceSchema.findOne({number, clientName});
+  if(invoice) throw new Error(`The invoice number ${number} already exist to ${clientName}`);
 };
 
 const orders_payed = async (ordersPayed = []) => {

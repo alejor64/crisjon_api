@@ -76,6 +76,9 @@ const orderSchema = new Schema({
   deliveredDate: {
     type: Date,
   },
+  breakDown: {
+    type: Array,
+  },
   lastModificatedAt: {
     type: Date,
     default: new Date(),

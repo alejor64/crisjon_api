@@ -55,7 +55,7 @@ router.get('/client/:clientName', [
 router.post('/create', [
   validate_token,
   check('number', 'Number is required').not().isEmpty(),
-  check('number').custom(invoice_new_number),
+  check('number').custom((number, { req }) => invoice_new_number(number, req.body)),
   check('startDate', 'Start date is required').not().isEmpty(),
   check('startDate', 'Invalid date').matches(REGEX_DATE),
   check('endDate', 'End date is required').not().isEmpty(),
