@@ -62,6 +62,9 @@ const orderSchema = new Schema({
   status: {
     type: String,
   },
+  shipTo: {
+    type: String,
+  },
   delivered: {
     type: Boolean,
     default: false,
