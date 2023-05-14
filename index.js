@@ -3,6 +3,8 @@ const app = express();
 const body_parser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cron = require('node-cron');
+const axios = require('axios');
 const config = require('./config/index');
 const user_api = require('./api/user/user');
 const client_api = require('./api/client/client');
@@ -12,6 +14,7 @@ const token_api = require('./api/token/token');
 const serviceApi = require('./api/order/services/services');
 const itemApi = require('./api/order/items/items');
 const invoiceApi = require('./api/invoice/invoice');
+const metalsPriceApi = require('./api/metalsPrice/metalsPrice');
 let mongo_uri = `mongodb+srv://${config.mongo_user}:${config.mongo_password}@cluster0.${config.mongo_keyword}.mongodb.net/${config.mongo_db}`;
 let options = {
   useNewUrlParser: true,
@@ -27,6 +30,7 @@ app.use('/order', order_api);
 app.use('/order-services', serviceApi);
 app.use('/order-items', itemApi);
 app.use('/estimate', estimate_api);
+app.use('/metals-price', metalsPriceApi);
 app.use('/invoice', invoiceApi);
 app.use('/token', token_api);
 
@@ -36,6 +40,10 @@ app.get('/', (req, res) => {
     msn: 'OK'
   });
 });
+
+cron.schedule('30 12 * * *', async() => {
+  await axios.get(`${config.url_prod}/metals-price/get-metals-price`);
+})
 
 mongoose.connect(mongo_uri, options, (error) => {
   if(error) {
@@ -47,4 +55,4 @@ mongoose.connect(mongo_uri, options, (error) => {
 
 app.listen(config.port, () => {
   console.log(`Server is listening on port ${config.port}`);
-})
+});

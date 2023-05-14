@@ -1,11 +1,10 @@
 const {Schema, model} = require('mongoose');
 
 const EstimateSchema = new Schema({
-  orderId: {
+  name: {
     type: String,
-    required: true,
   },
-  clientId: {
+  clientName: {
     type: String,
     required: true,
   },
@@ -44,6 +43,10 @@ const EstimateSchema = new Schema({
   metalType: {
     type: String,
     required: true,
+  },
+  metalPrice: {
+    type: Number,
+    default: 0,
   },
   metalQuantity: {
     type: Number,
@@ -125,6 +128,10 @@ const EstimateSchema = new Schema({
     type: Number,
     default: 1,
   },
+  pictureQuantity: {
+    type: Number,
+    default: 0,
+  },
   totalPrice: {
     type: Number,
     default: 0,
@@ -137,4 +144,4 @@ const EstimateSchema = new Schema({
   timestamps: true
 });
 
-module.exports = model('estimated_prices', EstimateSchema);
+module.exports = model('estimatedPrices', EstimateSchema);

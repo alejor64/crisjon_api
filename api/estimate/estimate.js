@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const {check} = require('express-validator');
-const {validate_fields, validate_token, has_role} = require('../../middlewares/index');
+const {validate_fields, validate_token} = require('../../middlewares/index');
 const { estimate_by_id } = require('../../utils/functions/db_validations/estimate');
-const { client_by_id } = require('../../utils/functions/db_validations/client');
-const { order_by_id } = require('../../utils/functions/db_validations/order');
-const {ADMIN_ROLE} = require('../../utils/constants/index');
+const { client_by_name_exits } = require('../../utils/functions/db_validations/client');
 const Estimate = require('../../lib/estimate/estimate');
 const estimate = new Estimate();
 
@@ -14,27 +12,23 @@ router.get('/', [ validate_token ], async(req, res) => {
   return res.status(status).json(rest);
 });
 
-router.get('/:estimate_id', [
+router.get('/:estimateId', [
   validate_token,
-  check('estimate_id', 'Invalid Id').isMongoId(),
-  check('estimate_id', 'Estimate id is required').not().isEmpty(),
-  check('estimate_id').custom(estimate_by_id),
+  check('estimateId', 'Invalid Id').isMongoId(),
+  check('estimateId', 'Estimate id is required').not().isEmpty(),
+  check('estimateId').custom(estimate_by_id),
   validate_fields
 ], async(req, res) => {
-  const {estimate_id} = req.params;
-  const {status, ...rest} = await estimate.get_estimate_by_id(estimate_id);
+  const {estimateId} = req.params;
+  const {status, ...rest} = await estimate.get_estimate_by_id(estimateId);
   return res.status(status).json(rest);
 });
 
-router.post('/create/client/:clientId/order/:orderId', [
+router.post('/create', [
   validate_token,
   check('metalType', 'Metal type is required').not().isEmpty(),
-  check('clientId', 'The client id is required').not().isEmpty(),
-  check('clientId', 'Invalid client id').isMongoId(),
-  check('clientId').custom(client_by_id),
-  check('orderId', 'The order id is required').not().isEmpty(),
-  check('orderId', 'Invalid order id').isMongoId(),
-  check('orderId').custom(order_by_id),
+  check('clientName', 'The client name is required').not().isEmpty(),
+  check('clientName').custom(client_by_name_exits),
   validate_fields
 ], async(req, res) => {
   const {body, params: {clientId, orderId}} = req;
@@ -42,27 +36,27 @@ router.post('/create/client/:clientId/order/:orderId', [
   return res.status(status).json(rest);
 });
 
-router.put('/edit/:estimate_id', [
+router.put('/edit/:estimateId', [
   validate_token,
-  check('estimate_id', 'Estimate id is required').not().isEmpty(),
-  check('estimate_id', 'Invalid Id').isMongoId(),
-  check('estimate_id').custom(estimate_by_id),
+  check('estimateId', 'Estimate id is required').not().isEmpty(),
+  check('estimateId', 'Invalid Id').isMongoId(),
+  check('estimateId').custom(estimate_by_id),
   validate_fields
 ], async (req, res) => {
-  const {body, params: {estimate_id}} = req;
-  const {status, ...rest} = await estimate.edit(body, estimate_id);
+  const {body, params: {estimateId}} = req;
+  const {status, ...rest} = await estimate.edit(body, estimateId);
   return res.status(status).json(rest);
 });
 
-router.delete('/delete/:estimate_id', [
+router.delete('/delete/:estimateId', [
   validate_token,
-  check('estimate_id', 'Estimate id is required').not().isEmpty(),
-  check('estimate_id', 'Invalid Id').isMongoId(),
-  check('estimate_id').custom(estimate_by_id),
+  check('estimateId', 'Estimate id is required').not().isEmpty(),
+  check('estimateId', 'Invalid Id').isMongoId(),
+  check('estimateId').custom(estimate_by_id),
   validate_fields
 ], async (req, res) => {
-  const {estimate_id} = req.params;
-  const {status, ...rest} = await estimate.delete(estimate_id);
+  const {estimateId} = req.params;
+  const {status, ...rest} = await estimate.delete(estimateId);
   return res.status(status).json(rest);
 });
 

@@ -7,6 +7,8 @@ const config = {
   mongo_password: process.env.MONGO_PASSWORD,
   mongo_keyword: process.env.MONGO_KEYWORD,
   mongo_db: process.env.MONGO_DB,
+  metal_price_api_key: process.env.METAL_PRICE_API_KEY,
+  url_prod: process.env.URL_PROD,
   token_key: process.env.TOKEN_KEY
 };
 
