@@ -64,7 +64,7 @@ const EstimateSchema = new Schema({
     type: Number,
     default: 0,
   },
-  diamondWeight: {
+  diamondQuantity: {
     type: Number,
     default: 0,
   },
