@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {check} = require('express-validator');
 const {validate_fields, validate_token} = require('../../middlewares/index');
-const { estimate_by_id, metal_price_quantity } = require('../../utils/functions/db_validations/estimate');
+const { estimate_by_id } = require('../../utils/functions/db_validations/estimate');
 const { client_by_name_exits } = require('../../utils/functions/db_validations/client');
 const Estimate = require('../../lib/estimate/estimate');
 const estimate = new Estimate();
@@ -27,8 +27,6 @@ router.get('/:estimateId', [
 router.post('/create', [
   validate_token,
   check('metalType', 'Metal type is required').not().isEmpty(),
-  check('metalPrice').custom(metal_price_quantity),
-  check('metalQuantity').custom(metal_price_quantity),
   check('clientName', 'The client name is required').not().isEmpty(),
   check('clientName').custom(client_by_name_exits),
   validate_fields
@@ -44,8 +42,6 @@ router.put('/edit/:estimateId', [
   check('estimateId', 'Invalid Id').isMongoId(),
   check('estimateId').custom(estimate_by_id),
   check('metalType', 'Metal type is required').not().isEmpty(),
-  check('metalPrice').custom(metal_price_quantity),
-  check('metalQuantity').custom(metal_price_quantity),
   validate_fields
 ], async (req, res) => {
   const {body, params: {estimateId}} = req;
