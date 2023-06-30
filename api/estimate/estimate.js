@@ -26,7 +26,6 @@ router.get('/:estimateId', [
 
 router.post('/create', [
   validate_token,
-  check('metalType', 'Metal type is required').not().isEmpty(),
   check('clientName', 'The client name is required').not().isEmpty(),
   check('clientName').custom(client_by_name_exits),
   validate_fields
@@ -41,7 +40,6 @@ router.put('/edit/:estimateId', [
   check('estimateId', 'Estimate id is required').not().isEmpty(),
   check('estimateId', 'Invalid Id').isMongoId(),
   check('estimateId').custom(estimate_by_id),
-  check('metalType', 'Metal type is required').not().isEmpty(),
   validate_fields
 ], async (req, res) => {
   const {body, params: {estimateId}} = req;

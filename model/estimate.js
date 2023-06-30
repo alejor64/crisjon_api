@@ -42,7 +42,6 @@ const EstimateSchema = new Schema({
   },
   metalType: {
     type: String,
-    required: true,
   },
   metalPrice: {
     type: Number,
