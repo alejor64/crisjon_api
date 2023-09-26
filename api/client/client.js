@@ -58,6 +58,6 @@ router.delete('/delete/:clientId', [
   const {clientId} = req.params;
   const {status, ...rest} = await client.deleteById(clientId);
   return res.status(status).json(rest);
-})
+});
 
 module.exports = router;
