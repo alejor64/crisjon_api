@@ -5,6 +5,10 @@ const invoiceSchema = new Schema({
     type: Number,
     required: true,
   },
+  id: {
+    type: String,
+    required: true,
+  },
   startDate: {
     type: String,
     required: true,
