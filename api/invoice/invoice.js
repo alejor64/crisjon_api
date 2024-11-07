@@ -5,7 +5,7 @@ const {validate_fields, validate_token} = require('../../middlewares/index');
 const {
   invoice_number,
   invoice_id,
-  invoice_new_number,
+  invoice_new_id,
   orders_payed,
 } = require('../../utils/functions/db_validations/invoice');
 const {client_by_name_exits} = require('../../utils/functions/db_validations/client');
@@ -55,7 +55,8 @@ router.get('/client/:clientName', [
 router.post('/create', [
   validate_token,
   check('number', 'Number is required').not().isEmpty(),
-  check('number').custom((number, { req }) => invoice_new_number(number, req.body)),
+  check('id', 'Id is required').not().isEmpty(),
+  check('id').custom((number, { req }) => invoice_new_id(number, req.body)),
   check('startDate', 'Start date is required').not().isEmpty(),
   check('startDate', 'Invalid date').matches(REGEX_DATE),
   check('endDate', 'End date is required').not().isEmpty(),
