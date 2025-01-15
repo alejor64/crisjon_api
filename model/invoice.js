@@ -24,6 +24,12 @@ const invoiceSchema = new Schema({
     type: Number,
     default: 0,
   },
+  prevInvoiceOutStandingBalance: {
+    type: String,
+  },
+  prevOutStandingBalance: {
+    type: Number,
+  },
   clientName: {
     type: String,
     required: true,
@@ -45,6 +51,9 @@ const invoiceSchema = new Schema({
   },
   paymentType: {
     type: String,
+  },
+  payments: {
+    type: Array,
   },
   checkNumber: {
     type: Number,

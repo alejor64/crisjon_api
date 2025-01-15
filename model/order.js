@@ -82,6 +82,9 @@ const orderSchema = new Schema({
   breakDown: {
     type: Array,
   },
+  invoice: {
+    type: String,
+  },
   lastModificatedAt: {
     type: Date,
     default: new Date(),

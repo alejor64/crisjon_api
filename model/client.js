@@ -42,6 +42,12 @@ const clientSchema = new Schema({
     type: Number,
     default: 0,
   },
+  outstandingBalanceInvoice: {
+    type: String,
+  },
+  dateOutStandingBalance: {
+    type: Date,
+  },
   lastModificatedAt:{
     type: Date,
     default: new Date(),
