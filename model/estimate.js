@@ -51,6 +51,46 @@ const EstimateSchema = new Schema({
     type: Number,
     default: 0,
   },
+  metal10Price: {
+    type: Number,
+    default: 0,
+  },
+  metal10Quantity: {
+    type: Number,
+    default: 0,
+  },
+  metal14Price: {
+    type: Number,
+    default: 0,
+  },
+  metal14Quantity: {
+    type: Number,
+    default: 0,
+  },
+  metal18Price: {
+    type: Number,
+    default: 0,
+  },
+  metal18Quantity: {
+    type: Number,
+    default: 0,
+  },
+  metalPlatinumPrice: {
+    type: Number,
+    default: 0,
+  },
+  metalPlatinumQuantity: {
+    type: Number,
+    default: 0,
+  },
+  metalSilverPrice: {
+    type: Number,
+    default: 0,
+  },
+  metalSilverQuantity: {
+    type: Number,
+    default: 0,
+  },
   stoneQuantity: {
     type: Number,
     default: 0,
