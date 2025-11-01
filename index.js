@@ -16,7 +16,7 @@ const serviceApi = require('./api/order/services/services');
 const itemApi = require('./api/order/items/items');
 const invoiceApi = require('./api/invoice/invoice');
 const metalsPriceApi = require('./api/metalsPrice/metalsPrice');
-let mongo_uri = `mongodb+srv://${config.mongo_user}:${config.mongo_password}@cluster0.${config.mongo_keyword}.mongodb.net/${config.mongo_db}`;
+let mongo_uri = `mongodb+srv://${config.mongo_user}:${config.mongo_password}@${config.mongo_cluster}.${config.mongo_keyword}.mongodb.net/${config.mongo_db}`;
 let options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
