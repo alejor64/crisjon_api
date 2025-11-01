@@ -39,7 +39,7 @@ app.use('/token', token_api);
 app.get('/', (req, res) => {
   return res.status(200).json({
     data: 'CRISJON API',
-    msn: 'OK'
+    msn: 'OK V1.0.0'
   });
 });
 
